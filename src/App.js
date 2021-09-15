@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Login from './components/Login';
-import Search from './components/Search';
-import Album from './components/Album';
-import Favorites from './components/Favorites';
-import Profile from './components/Profile';
-import ProfileEdit from './components/ProfileEdit';
-import NotFound from './components/NotFound';
+import Login from './pages/Login';
+import Search from './pages/Search';
+import Album from './pages/Album';
+import Favorites from './pages/Favorites';
+import Profile from './pages/Profile';
+import ProfileEdit from './pages/ProfileEdit';
+import NotFound from './pages/NotFound';
+import { createUser } from './services/userAPI';
 
 class App extends React.Component {
   render() {
@@ -35,7 +36,7 @@ class App extends React.Component {
           </Route>
 
           <Route path="/" exact>
-            <Login />
+            <Login createUser={ createUser } />
           </Route>
 
           <Route path="*">
