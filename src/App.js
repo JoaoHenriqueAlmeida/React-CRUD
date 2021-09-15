@@ -8,11 +8,13 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import NotFound from './pages/NotFound';
 import { createUser } from './services/userAPI';
+import Header from './components/Header';
 
 class App extends React.Component {
   render() {
     return (
       <Router>
+        <Header />
         <Switch>
 
           <Route path="/album/:id">
