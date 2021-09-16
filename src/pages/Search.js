@@ -1,14 +1,23 @@
 import React from 'react';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import AlbumList from '../components/AlbumList';
+import Loading from '../components/Loading';
+import ArtistInputForm from '../components/ArtistInputForm';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      currArtist: '',
       searchInput: '',
+      loading: false,
+      foundArtist: false,
+      albumsArr: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange({ target }) {
@@ -18,24 +27,51 @@ class Search extends React.Component {
     });
   }
 
-  render() {
+  async handleClick() {
     const { searchInput } = this.state;
-    const requiredCharacters = 2;
+    this.setState({ loading: true });
+    const albums = await searchAlbumsAPI(searchInput);
+    this.setState({
+      currArtist: searchInput,
+      searchInput: '',
+      loading: false,
+      foundArtist: true,
+      albumsArr: [...albums],
+    });
+  }
+
+  render() {
+    const {
+      state: {
+        currArtist,
+        searchInput,
+        loading,
+        foundArtist,
+        albumsArr,
+      },
+      handleChange,
+      handleClick,
+    } = this;
+
+    const renderArtistAlbums = (
+      <>
+        <p>{`Resultado de álbuns de: ${currArtist}`}</p>
+        <AlbumList albumsArr={ albumsArr } />
+      </>
+    );
+
+    const renderSearchInput = (
+      <ArtistInputForm
+        handleChange={ handleChange }
+        handleClick={ handleClick }
+        searchInput={ searchInput }
+      />
+    );
+
     return (
       <div data-testid="page-search">
-        <form>
-          <input
-            data-testid="search-artist-input"
-            onChange={ this.handleChange }
-          />
-          <button
-            type="button"
-            data-testid="search-artist-button"
-            disabled={ searchInput.length < requiredCharacters }
-          >
-            Pesquisar
-          </button>
-        </form>
+        { loading ? <Loading /> : renderSearchInput }
+        { foundArtist ? renderArtistAlbums : '' }
       </div>
     );
   }
