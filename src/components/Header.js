@@ -32,10 +32,16 @@ class Header extends React.Component {
 
     return (
       <header data-testid="header-component">
+        <Link to="/search" data-testid="link-to-search">
+          Pesquisa
+        </Link>
+        <Link to="/favorites" data-testid="link-to-favorites">
+          Favoritos
+        </Link>
+        <Link to="/profile" data-testid="link-to-profile">
+          Perfil
+        </Link>
         <h1 data-testid="header-user-name">
-          <Link to="/search" data-testid="link-to-search" />
-          <Link to="/favorites" data-testid="link-to-favorites" />
-          <Link to="/profile" data-testid="link-to-profile" />
           { loading ? <Loading /> : `Logged as ${username}, welcome!` }
         </h1>
 

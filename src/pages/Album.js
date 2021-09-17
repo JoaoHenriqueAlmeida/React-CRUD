@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
 import MusicList from '../components/MusicList';
+import Header from '../components/Header';
 
 // Consultei o pull request dos colegas Fernando Nascimento e Michael Caxias para conseguir resolver o sétimo requisito, links :
 // Michael Caxias : https://github.com/tryber/sd-014-b-project-trybetunes/pull/2
@@ -36,9 +37,12 @@ class Album extends React.Component {
     const { musics, loading } = this.state;
 
     return (
-      <div data-testid="page-album">
-        { loading ? <Loading /> : <MusicList musics={ musics } /> }
-      </div>
+      <>
+        <Header />
+        <div data-testid="page-album">
+          { loading ? <Loading /> : <MusicList musics={ musics } /> }
+        </div>
+      </>
     );
   }
 }

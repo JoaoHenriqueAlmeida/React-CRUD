@@ -3,6 +3,7 @@ import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import AlbumList from '../components/AlbumList';
 import Loading from '../components/Loading';
 import ArtistInputForm from '../components/ArtistInputForm';
+import Header from '../components/Header';
 
 class Search extends React.Component {
   constructor(props) {
@@ -69,10 +70,13 @@ class Search extends React.Component {
     );
 
     return (
-      <div data-testid="page-search">
-        { loading ? <Loading /> : renderSearchInput }
-        { foundArtist ? renderArtistAlbums : '' }
-      </div>
+      <>
+        <Header />
+        <div data-testid="page-search">
+          { loading ? <Loading /> : renderSearchInput }
+          { foundArtist ? renderArtistAlbums : '' }
+        </div>
+      </>
     );
   }
 }
