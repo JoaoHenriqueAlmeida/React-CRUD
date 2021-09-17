@@ -18,7 +18,8 @@ class AlbumCard extends React.Component {
         <p>{ collectionName }</p>
         <p>{ artistName }</p>
         <Link
-          to={ `/album/${collectionId}` }
+          to={ { pathname: `/album/${collectionId}`,
+            state: { collectionName, artistName } } }
           data-testid={ `link-to-album-${collectionId}` }
         >
           Mais informações

@@ -18,7 +18,7 @@ class App extends React.Component {
         <Switch>
 
           <Route path="/album/:id">
-            <Album />
+            {(props) => <Album { ...props } />}
           </Route>
 
           <Route path="/profile/edit">
