@@ -13,10 +13,11 @@ class MusicList extends React.Component {
         <h3 data-testid="album-name">
           { musics[0].collectionName }
         </h3>
-        {musics.slice(1).map(({ trackName, previewUrl }, index) => (<MusicCard
+        {musics.slice(1).map(({ trackName, previewUrl, trackId }) => (<MusicCard
           trackName={ trackName }
           previewUrl={ previewUrl }
-          key={ index }
+          trackId={ trackId }
+          key={ trackId }
         />))}
       </>
     );
