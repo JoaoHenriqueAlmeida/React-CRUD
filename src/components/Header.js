@@ -30,6 +30,10 @@ class Header extends React.Component {
   render() {
     const { loading, username } = this.state;
 
+    const loggedAs = (
+      <h1 data-testid="header-user-name">{`Logged as ${username}, welcome!`}</h1>
+    );
+
     return (
       <header data-testid="header-component">
         <Link to="/search" data-testid="link-to-search">
@@ -41,10 +45,7 @@ class Header extends React.Component {
         <Link to="/profile" data-testid="link-to-profile">
           Perfil
         </Link>
-        <h1 data-testid="header-user-name">
-          { loading ? <Loading /> : `Logged as ${username}, welcome!` }
-        </h1>
-
+        { loading ? <Loading /> : loggedAs }
       </header>
     );
   }
